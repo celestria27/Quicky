@@ -12,12 +12,16 @@ let g:fzf_layout = { 'down':  '40%'}
 lua require('init')
 
 nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
+nnoremap <C-n> :set rnu!<CR>
+nnoremap <C-p> :Files<CR>
+
+let NERDTreeShowHidden=1
 
 set nu
 set smartindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
+set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
