@@ -1,0 +1,68 @@
+! Dracula Xresources palette
+! URxvt.depth: 32
+! URxvt.foreground: #F8F8F2
+! URxvt.background: [98]#232530
+! URxvt.color0:     #000000
+! URxvt.color8:     #4D4D4D
+! URxvt.color1:     #FF5555
+! URxvt.color9:     #FF6E67
+! URxvt.color2:     #50FA7B
+! URxvt.color10:    #5AF78E
+! URxvt.color3:     #F1FA8C
+! URxvt.color11:    #F4F99D
+! URxvt.color4:     #BD93F9
+! URxvt.color12:    #CAA9FA
+! URxvt.color5:     #FF79C6
+! URxvt.color13:    #FF92D0
+! URxvt.color6:     #8BE9FD
+! URxvt.color14:    #9AEDFE
+! URxvt.color7:     #BFBFBF
+! URxvt.color15:    #E6E6E6
+! 
+! ---- Enabled Section ----
+
+! Rose-Pine Theme
+!! special
+URxvt.depth: 32
+URxvt.foreground:   #e0def4
+URxvt.background:   [98]#191724
+URxvt.cursorColor:  #e0def4
+
+! black
+URxvt.color0:       #1f1d2e
+URxvt.color8:       #26233a
+
+! red
+URxvt.color1:       #eb6f92
+URxvt.color9:       #eb6f92
+
+! green
+URxvt.color2:       #f6c177
+URxvt.color10:      #f6c177
+
+! yellow
+URxvt.color3:       #ebbcba
+URxvt.color11:      #ebbcba
+
+! blue
+URxvt.color4:       #31748f
+URxvt.color12:      #31748f
+
+! magenta
+URxvt.color5:       #c4a7e7
+URxvt.color13:      #c4a7e7
+
+! cyan
+URxvt.color6:       #9ccfd8
+URxvt.color14:      #9ccfd8
+
+! white
+URxvt.color7:       #6e6a86
+URxvt.color15:      #908caa
+
+URxvt.perl-ext-common: default,tabbed,newterm
+URxvt.scrollBar: False
+URxvt.font: xft:GohuFont uni14 Nerd Font Propo:size=10:antialias=true
+
+URxvt.iso14755: False 
+URxvt.iso14755_52: False 

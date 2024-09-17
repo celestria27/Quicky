@@ -6,6 +6,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'rose-pine/neovim'
 call plug#end()
 
 let g:fzf_layout = { 'down':  '40%'}
