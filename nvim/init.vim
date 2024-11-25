@@ -10,5 +10,4 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'rose-pine/neovim'
 call plug#end()
 
-let g:fzf_layout = { 'down':  '40%'}
 lua require('init')
