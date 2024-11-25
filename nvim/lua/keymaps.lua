@@ -1,27 +1,33 @@
-
+-- Fzf
 local fzfnvim = require('fzf-lua')
 vim.keymap.set('n', '<space>ff', fzfnvim.files, { noremap = true })
 vim.keymap.set('n', '<space>fb', fzfnvim.buffers, { noremap = true })
 vim.keymap.set('n', '<space>fs', fzfnvim.lsp_document_symbols, { noremap = true })
 
+-- Tree
 local tree_api = require('nvim-tree.api')
-vim.keymap.set('n', '<space>tt', tree_api.tree.toggle, { noremap = true })
-vim.keymap.set('n', '<space>tf', tree_api.tree.find_file, { noremap = true })
 
+local function toggle_find()
+    tree_api.tree.find_file({ open = true, focus = true, })
+end
 
+vim.keymap.set('n', 'tt', tree_api.tree.toggle, { noremap = true })
+vim.keymap.set('n', 'tf', toggle_find, { noremap = true })
+
+-- Line Number
 local function toggle_line_number()
     vim.o.relativenumber = not vim.o.relativenumber
 end
+vim.keymap.set('n', '<space>n', toggle_line_number,{ noremap = true })
 
--- Global mappings.
+-- Diagnostic
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 
-vim.keymap.set('n', '<space>n', toggle_line_number,{ noremap = true })
-
+-- Lsp
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd('LspAttach', {
