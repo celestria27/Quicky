@@ -7,7 +7,7 @@ require("rose-pine").setup({
 
     enable = {
         terminal = true,
-            legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
+        legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
         migrations = true, -- Handle deprecated options automatically
     },
 
@@ -51,28 +51,28 @@ require("rose-pine").setup({
     palette = {
         -- Override the builtin palette per variant
         -- moon = {
-        --     base = '#18191a',
-        --     overlay = '#363738',
-        -- },
-    },
+            --     base = '#18191a',
+            --     overlay = '#363738',
+            -- },
+        },
 
-    highlight_groups = {
-        -- Comment = { fg = "foam" },
-        -- VertSplit = { fg = "muted", bg = "muted" },
-    },
+        highlight_groups = {
+            -- Comment = { fg = "foam" },
+            -- VertSplit = { fg = "muted", bg = "muted" },
+        },
 
-    before_highlight = function(group, highlight, palette)
-        -- Disable all undercurls
-        -- if highlight.undercurl then
-        --     highlight.undercurl = false
-        -- end
-        --
-        -- Change palette colour
-        -- if highlight.fg == palette.pine then
-        --     highlight.fg = palette.foam
-        -- end
-    end,
-})
+        before_highlight = function(group, highlight, palette)
+            -- Disable all undercurls
+            -- if highlight.undercurl then
+            --     highlight.undercurl = false
+            -- end
+            --
+            -- Change palette colour
+            -- if highlight.fg == palette.pine then
+            --     highlight.fg = palette.foam
+            -- end
+        end,
+    })
 
-vim.cmd("colorscheme rose-pine")
+    vim.cmd("colorscheme rose-pine")
 

@@ -1,4 +1,4 @@
--- disable netrw at the very start of your init.lua
+-- Disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
@@ -19,11 +19,11 @@ opt.shiftwidth = 4
 
 local space = "·"
 opt.listchars:append {
-	tab = "│─",
-	multispace = space,
-	lead = space,
-	trail = space,
-	nbsp = space
+    tab = "│─",
+    multispace = space,
+    lead = space,
+    trail = space,
+    nbsp = space
 }
 
 opt.numberwidth = 3
@@ -33,17 +33,17 @@ cmd([[match TrailingWhitespace /\s\+$/]])
 nvim_set_hl(0, "TrailingWhitespace", { link = "Error" })
 
 nvim_create_autocmd("InsertEnter", {
-	callback = function()
-		opt.listchars.trail = nil
-		nvim_set_hl(0, "TrailingWhitespace", { link = "Whitespace" })
-	end
+    callback = function()
+        opt.listchars.trail = nil
+        nvim_set_hl(0, "TrailingWhitespace", { link = "Whitespace" })
+    end
 })
 
 nvim_create_autocmd("InsertLeave", {
-	callback = function()
-		opt.listchars.trail = space
-		nvim_set_hl(0, "TrailingWhitespace", { link = "Error" })
-	end
+    callback = function()
+        opt.listchars.trail = space
+        nvim_set_hl(0, "TrailingWhitespace", { link = "Error" })
+    end
 })
 
 require('theme')
