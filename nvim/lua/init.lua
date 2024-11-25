@@ -1,188 +1,53 @@
--- Setup language servers.
-local lspconfig = require('lspconfig')
-lspconfig.pyright.setup {}
-lspconfig.tsserver.setup {}
-lspconfig.clangd.setup{}
+-- disable netrw at the very start of your init.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
-local cmp = require'cmp'
+-- Defaul options
+local opt = vim.opt
+local cmd = vim.cmd
+local api = vim.api
+local nvim_create_autocmd = api.nvim_create_autocmd
+local nvim_set_hl = api.nvim_set_hl
 
-cmp.setup({
-    snippet = {
-      -- REQUIRED - you must specify a snippet engine
-      expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-        -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-      end,
-    },
-    window = {
-      completion = cmp.config.window.bordered(),
-      -- documentation = cmp.config.window.bordered(),
-    },
-    mapping = cmp.mapping.preset.insert({
-      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.abort(),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    }),
-    sources = cmp.config.sources({
-      { name = 'nvim_lsp' },
-      { name = 'cmp_nvim_lsp' },
-      { name = 'vsnip' }, -- For vsnip users.
-    }, {
-      { name = 'buffer' },
-    })
-  })
+opt.list = true
 
-  -- Set configuration for specific filetype.
-  cmp.setup.filetype('gitcommit', {
-    sources = cmp.config.sources({
-      { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
-    }, {
-      { name = 'buffer' },
-    })
-  })
+opt.nu = true
+opt.smartindent = true
+opt.expandtab = true
+opt.tabstop = 4
+opt.shiftwidth = 4
 
-  -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline({ '/', '?' }, {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = {
-      { name = 'buffer' }
-    }
-  })
+local space = "·"
+opt.listchars:append {
+	tab = "│─",
+	multispace = space,
+	lead = space,
+	trail = space,
+	nbsp = space
+}
 
-  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-      { name = 'path' }
-    }, {
-      { name = 'cmdline' }
-    })
-  })
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-  require('lspconfig')['clangd'].setup {
-    capabilities = capabilities,
-    autostart = true
-  }
-  require('lspconfig')['pyright'].setup {
-    capabilities = capabilities,
-    autostart = true
-  }
+opt.numberwidth = 3
 
-require("rose-pine").setup({
-    variant = "auto", -- auto, main, moon, or dawn
-    dark_variant = "main", -- main, moon, or dawn
-    dim_inactive_windows = false,
-    extend_background_behind_borders = true,
+cmd([[match TrailingWhitespace /\s\+$/]])
 
-    enable = {
-        terminal = true,
-        legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
-        migrations = true, -- Handle deprecated options automatically
-    },
+nvim_set_hl(0, "TrailingWhitespace", { link = "Error" })
 
-    styles = {
-        bold = true,
-        italic = true,
-        transparency = false,
-    },
-
-    groups = {
-        border = "muted",
-        link = "iris",
-        panel = "surface",
-
-        error = "love",
-        hint = "iris",
-        info = "foam",
-        note = "pine",
-        todo = "rose",
-        warn = "gold",
-
-        git_add = "foam",
-        git_change = "rose",
-        git_delete = "love",
-        git_dirty = "rose",
-        git_ignore = "muted",
-        git_merge = "iris",
-        git_rename = "pine",
-        git_stage = "iris",
-        git_text = "rose",
-        git_untracked = "subtle",
-
-        h1 = "iris",
-        h2 = "foam",
-        h3 = "rose",
-        h4 = "gold",
-        h5 = "pine",
-        h6 = "foam",
-    },
-
-    palette = {
-        -- Override the builtin palette per variant
-        -- moon = {
-        --     base = '#18191a',
-        --     overlay = '#363738',
-        -- },
-    },
-
-    highlight_groups = {
-        -- Comment = { fg = "foam" },
-        -- VertSplit = { fg = "muted", bg = "muted" },
-    },
-
-    before_highlight = function(group, highlight, palette)
-        -- Disable all undercurls
-        -- if highlight.undercurl then
-        --     highlight.undercurl = false
-        -- end
-        --
-        -- Change palette colour
-        -- if highlight.fg == palette.pine then
-        --     highlight.fg = palette.foam
-        -- end
-    end,
+nvim_create_autocmd("InsertEnter", {
+	callback = function()
+		opt.listchars.trail = nil
+		nvim_set_hl(0, "TrailingWhitespace", { link = "Whitespace" })
+	end
 })
 
-vim.cmd("colorscheme rose-pine")
-
--- Global mappings.
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
-
--- Use LspAttach autocommand to only map the following keys
--- after the language server attaches to the current buffer
-vim.api.nvim_create_autocmd('LspAttach', {
-  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-  callback = function(ev)
-    -- Enable completion triggered by <c-x><c-o>
-    vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
-
-    -- Buffer local mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local opts = { buffer = ev.buf }
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-    vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
-    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
-    vim.keymap.set('n', '<space>wl', function()
-      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, opts)
-    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
-    vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-    vim.keymap.set('n', '<space>f', function()
-      vim.lsp.buf.format { async = true }
-    end, opts)
-  end,
+nvim_create_autocmd("InsertLeave", {
+	callback = function()
+		opt.listchars.trail = space
+		nvim_set_hl(0, "TrailingWhitespace", { link = "Error" })
+	end
 })
+
+require('theme')
+require('lsp_config')
+require('fzf_nvim')
+require('file_tree')
+require('keymaps')
