@@ -59,6 +59,3 @@ require('nvim-web-devicons').setup {
   },
  };
 }
-
--- Keymaps
-vim.keymap.set('n', '<C-n>', '<cmd>NvimTreeToggle<CR>', { noremap = true })
