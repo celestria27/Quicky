@@ -3,6 +3,7 @@ local fzfnvim = require('fzf-lua')
 vim.keymap.set('n', '<space>ff', fzfnvim.files, { noremap = true })
 vim.keymap.set('n', '<space>fb', fzfnvim.buffers, { noremap = true })
 vim.keymap.set('n', '<space>fs', fzfnvim.lsp_document_symbols, { noremap = true })
+vim.keymap.set('n', '<space>fg', fzfnvim.grep, { noremap = true })
 
 -- Tree
 local tree_api = require('nvim-tree.api')
