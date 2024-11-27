@@ -8,6 +8,7 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'rose-pine/neovim'
+Plug 'lewis6991/gitsigns.nvim'
 call plug#end()
 
 lua require('init')

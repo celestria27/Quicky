@@ -28,6 +28,9 @@ opt.listchars:append {
 
 opt.numberwidth = 3
 
+-- Increase update time for version control sync
+opt.updatetime = 100
+
 cmd([[match TrailingWhitespace /\s\+$/]])
 
 nvim_set_hl(0, "TrailingWhitespace", { link = "Error" })
@@ -51,3 +54,4 @@ require('lsp_config')
 require('fzf_nvim')
 require('file_tree')
 require('keymaps')
+require('gitsigns_config')

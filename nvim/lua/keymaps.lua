@@ -12,14 +12,19 @@ local function toggle_find()
     tree_api.tree.find_file({ open = true, focus = true, })
 end
 
-vim.keymap.set('n', 'tt', tree_api.tree.toggle, { noremap = true })
+vim.keymap.set('n', 'tt', tree_api.tree.open, { noremap = true })
+vim.keymap.set('n', 'tc', tree_api.tree.toggle, { noremap = true })
 vim.keymap.set('n', 'tf', toggle_find, { noremap = true })
 
 -- Line Number
 local function toggle_line_number()
     vim.o.relativenumber = not vim.o.relativenumber
 end
-vim.keymap.set('n', '<space>n', toggle_line_number,{ noremap = true })
+vim.keymap.set('n', '<space>n', toggle_line_number, { noremap = true })
+
+-- Git Signs
+local gitsigns = require('gitsigns')
+vim.keymap.set('n', '<space>lb', gitsigns.toggle_current_line_blame, { noremap = true })
 
 -- Diagnostic
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
