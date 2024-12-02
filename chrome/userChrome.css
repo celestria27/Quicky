@@ -1,5 +1,11 @@
-#tabbrowser-tabs {
+/*#tabbrowser-tabs {
   visibility: collapse !important;
+}*/
+.titlebar-spacer {
+  display: none;
+}
+#TabsToolbar {
+    visibility: collapse;
 }
 
 #sidebar-box {
@@ -162,11 +168,10 @@
 }
 
 /* Options with pixel amounts could need to be adjusted, as this only works for my laptop's display */
-/*#titlebar {
+#titlebar {
   -moz-box-ordinal-group: 0 !important;
 } 
-*/
-.tabbrowser-tab:not([fadein]),
+
 #tracking-protection-icon-container,
 #identity-box {
   display: none !important;
@@ -176,7 +181,6 @@
 #urlbar-background,
 .titlebar-buttonbox-container,
 #nav-bar,
-.tabbrowser-tab:not([selected]) .tab-background,
 .urlbarView
 {
   background: var(--uc-bg-color) !important;
@@ -211,23 +215,6 @@
 /*#tabs-newtab-button {
   display: var(--uc-show-new-tab-button) !important;
 }*/
-.tabbrowser-tab::after {
-  border-left: var(--uc-tab-separators-width) solid var(--uc-tab-separators-color) !important;
-  display: var(--uc-show-tab-separators) !important;
-}
-
-.tabbrowser-tab[first-visible-tab][last-visible-tab] {
-  background-color: var(--uc-bar-bg-color) !important;
-}
-
-.tab-close-button.close-icon {
-  display: none !important;
-}
-
-.tabbrowser-tab:hover .tab-close-button.close-icon {
-  display: block !important;
-}
-
 #urlbar-input {
   text-align: center !important;
 }
