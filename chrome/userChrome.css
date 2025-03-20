@@ -172,11 +172,17 @@
   -moz-box-ordinal-group: 0 !important;
 } 
 
-#tracking-protection-icon-container,
+#tracking-protection-icon-container {
+  display: none !important;
+  border: none !important;
+}
+
+/*
 #identity-box {
   display: none !important;
   border: none !important;
 }
+*/
 
 #urlbar-background,
 .titlebar-buttonbox-container,
