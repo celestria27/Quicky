@@ -1,3 +1,6 @@
+-- Global
+vim.keymap.set('n', '<esc>', '<C-\\><C-n>', { noremap = true })
+
 -- Fzf
 local fzfnvim = require('fzf-lua')
 vim.keymap.set('n', '<space>ff', fzfnvim.files, { noremap = true })
