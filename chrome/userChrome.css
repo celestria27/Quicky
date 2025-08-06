@@ -177,12 +177,11 @@
   border: none !important;
 }
 
-/*
 #identity-box {
-  display: none !important;
+  /* display: none !important; */
+  right: var(--urlbar-container-width);
   border: none !important;
 }
-*/
 
 #urlbar-background,
 .titlebar-buttonbox-container,
